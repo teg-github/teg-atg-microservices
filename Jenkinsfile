@@ -11,13 +11,13 @@ node ('master') {
     sources: './BannerService/src'    
   ]	
   stage('Notify Stakeholders') {
-    sh "echo Notifying stackholders is done && sleep 1"
+    sh "echo Notifying stackholders is done"
   }
   stage('Preparation') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
   stage('Verify Stage Preparation') {
-    sh "./build-scripts/prepare-env.sh && cat ~/env.properties"
+    sh "./build-scripts/prepare-env.sh"
   }
   stage('Test Run') {
     sh "echo done"
@@ -26,7 +26,7 @@ node ('master') {
     timestamps {
       parallel (
         "Junit Test" : {
-          sh "sleep 5 && cd ${workspace}/BannerService && echo Unit Test is done && sleep 5"
+          sh "echo Unit Test is done"
         },
         "Static Code Analysis" : {
 		  sh "${scannerHome}/bin/sonar-scanner \
@@ -43,13 +43,14 @@ node ('master') {
     sh 'echo done'
   }
   stage('Docker Containerization') {
-    sh "echo Containerization is done && sleep 5"
+    sh "echo Containerization is done"
   }
   stage('Upload Artifacts') {
-    sh "echo Deployment is done && sleep 5"
+    sh "echo Deployment is done"
   }
   stage('Deploy docker container') {
-    sh "./build-scripts/copy-code.sh && cat ActorChainRestRegistry.properties"
+    sh "./build-scripts/copy-code.sh"
+    sh "cat ActorChainRestRegistry.properties"
   }
   stage('Update Release Notification') {
   }
