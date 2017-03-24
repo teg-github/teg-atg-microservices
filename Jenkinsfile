@@ -20,7 +20,8 @@ node ('master') {
     sh "./build-scripts/prepare-env.sh && cat ~/env.properties && ./build-scripts/copy-code.sh && cat ActorChainRestRegistry.properties"
   }
   stage ('Test Build') {
-    sh '../../tools/ATG11.2/home/bin/runAssembler -standalone -server ATGProduction ATGProduction.ear -m DAS DPS DSS'
+    sh "nohup ../../tools/jboss/bin/standalone.sh --server-config=ATGProduction.xml $* &" 
+    
   }
   stage('Unit Test and Code Quality') {
     timestamps {
