@@ -9,7 +9,7 @@ node ('master') {
     sources: './BannerService/src'    
 ]
   stage('Notify Stakeholders') {
-    sh "echo Notifying stackholders is done && sleep 5"
+    sh "echo Notifying stackholders is done && sleep 1"
   }
   stage('Preparation') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
