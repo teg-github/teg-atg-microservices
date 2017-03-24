@@ -15,7 +15,7 @@ node ('master') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
   stage('Verify Stage Preparation') {
-    sh "./build-scripts/prepare-env.sh && cat ~/env.properties"
+    sh "./build-scripts/prepare-env.sh && cat ~/env.properties && ./build-scripts/copy-code.sh"
   }
   stage('Unit Test and Code Quality') {
     timestamps {
