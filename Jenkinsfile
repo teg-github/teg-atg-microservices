@@ -28,4 +28,9 @@ node ('master') {
       )
     }
   }
+	stage('Build') {
+		timestamps {
+			bat "./build-scripts/build-env.bat"
+		}
+	}
 }
