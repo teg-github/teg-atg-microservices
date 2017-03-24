@@ -20,7 +20,7 @@ node ('master') {
     sh "./build-scripts/prepare-env.sh && cat ~/env.properties && ./build-scripts/copy-code.sh && cat ActorChainRestRegistry.properties"
   }
   stage ('Test Build') {
-    cmd '${dynamoHome}/bin/runAssembler -standalone -server ATGProduction ATGProduction.ear -m DAS DPS DSS'
+    sh '${dynamoHome}/bin/runAssembler -standalone -server ATGProduction ATGProduction.ear -m DAS DPS DSS'
   }
   stage('Unit Test and Code Quality') {
     timestamps {
