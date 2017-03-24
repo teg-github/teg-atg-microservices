@@ -12,7 +12,7 @@ node ('master') {
     sh "echo Notifying stackholders is done && sleep 5"
   }
   stage('Preparation') {
-    git url: 'http://sakthi:Sakthi123@10.145.64.176:80/git/atg/ATG-MicroServices'
+    git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
   stage('Verify Stage Preparation') {
     sh "echo Stage preparation is done && sleep 5"
