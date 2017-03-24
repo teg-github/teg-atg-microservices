@@ -20,7 +20,7 @@ node ('master') {
     timestamps {
       parallel (
         "Junit Test" : {
-          sh "echo Unit Test is done"
+          bat "echo done"
         },
         "Static Code Analysis" : {
 	  bat "./build-scripts/sonar-analysis.bat"
