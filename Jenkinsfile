@@ -23,11 +23,7 @@ node ('master') {
           sh "echo Unit Test is done"
         },
         "Static Code Analysis" : {
-		  bat "%scannerHome%\bin\sonar-scanner \
-                                    -Dsonar.projectKey=${sonarProperties.projectKey} \
-                                    -Dsonar.projectName=${sonarProperties.projectName} \
-                                    -Dsonar.projectVersion=${sonarProperties.projectVersion} \
-                                    -Dsonar.sources=${sonarProperties.sources}"
+		  bat "C:\sonar-scanner-2.5.1\bin\sonar-scanner -Dsonar.projectKey=${sonarProperties.projectKey} -Dsonar.projectName=${sonarProperties.projectName} -Dsonar.projectVersion=${sonarProperties.projectVersion} -Dsonar.sources=${sonarProperties.sources}"
         }
       )
     }
