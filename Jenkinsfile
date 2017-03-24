@@ -14,6 +14,6 @@ node ('master') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
   stage('Verify Stage Preparation') {
-    cmd "./build-scripts/prepare-env.bat"
+    bat "./build-scripts/prepare-env.bat"
   }
 }
