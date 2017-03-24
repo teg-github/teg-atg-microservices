@@ -2,12 +2,14 @@ node ('master') {
   def JAVA_HOME = tool 'jdk8'
   def MVN_HOME = tool 'maven3'
   def scannerHome = tool 'runner29'
+  def jbossHome = '${WORKSPACE}/../tools/jboss'
+  def dynamoHome = '${WORKSPACE}/../tools/ATG11.2/home'
   def sonarProperties = [
     projectKey: "WW-ATG-MicroService-Report",
     projectName: "WW-ATG-MicroService-Report",
     projectVersion: '1.0',
     sources: './BannerService/src'    
-]
+  ]	
   stage('Notify Stakeholders') {
     sh "echo Notifying stackholders is done && sleep 1"
   }
@@ -16,6 +18,9 @@ node ('master') {
   }
   stage('Verify Stage Preparation') {
     sh "./build-scripts/prepare-env.sh && cat ~/env.properties && ./build-scripts/copy-code.sh && cat ActorChainRestRegistry.properties"
+  }
+  stage ('Test Build') {
+    cmd '${dynamoHome}/bin/runAssembler -standalone -server ATGProduction ATGProduction.ear -m DAS DPS DSS'
   }
   stage('Unit Test and Code Quality') {
     timestamps {
