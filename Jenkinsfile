@@ -20,7 +20,7 @@ node ('master') {
     sh "./build-scripts/prepare-env.sh && cat ~/env.properties && ./build-scripts/copy-code.sh && cat ActorChainRestRegistry.properties"
   }
   stage ('Test Build') {
-    sh "nohup ../../tools/jboss/bin/standalone.sh --server-config=ATGProduction.xml $* &" 
+    sh "nohup ../../tools/jboss/bin/standalone.sh --server-config=ATGProduction.xml &" 
     
   }
   stage('Unit Test and Code Quality') {
