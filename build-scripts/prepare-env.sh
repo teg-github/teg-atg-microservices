@@ -1,6 +1,4 @@
 #!/bin/sh
-pwd
-ls
 if grep "getUpsellForProduct" ./MicroServices/config/atg/rest/registry/ActorChainRestRegistry.properties
 then
     echo UPSELL_ENABLED=1 > ~/env.properties
