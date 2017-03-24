@@ -1,2 +1,2 @@
 cd C:\ATG\ATG11.2\home\bin
-runAssembler -server ATGProdution ATGProduction.ear -m DAS DPS DSS
+runAssembler -server ATGProdution ATGProduction.ear -m DafEar.Admin DPS DSS DCS.PublishingAgent DCS.AbandonedOrderServices DAF.Endeca.Index DCS.Endeca.Index Store.Endeca.Index DAF.Endeca.Assembler PublishingAgent REST DCS.Endeca.Index.SKUIndexing Store.Storefront Store.EStore.International DCS.ClickToConnect Store.Mobile Store.Endeca.International Store.Storefront.NoPublishing Store.Fluoroscope Store.Fulfillment Store.Mobile.REST Store.Storefront.NoPublishing.International
