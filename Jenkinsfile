@@ -9,10 +9,7 @@ node ('master') {
     projectName: "WW-ATG-MicroService-Report",
     projectVersion: '1.0',
     sources: './BannerService/src'    
-  ]	
-  stage('Notify Stakeholders') {
-    sh "echo Notifying stackholders is done"
-  }
+  ]
   stage('Preparation') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
