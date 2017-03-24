@@ -15,7 +15,7 @@ node ('master') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
   stage('Verify Stage Preparation') {
-    sh "echo Stage preparation is done && sleep 5"
+    sh "./build-scripts/prepare-env.sh"
   }
   stage('Unit Test and Code Quality') {
     timestamps {
