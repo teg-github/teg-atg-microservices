@@ -1,0 +1,1 @@
+copy /y C:\Users\589729\.jenkins\workspace\eg-atg-microservices_master-XHXRTCGA5DLGLKIRFA3S3W342WSQH3AEN7ARFN4HLVSDH3WZVMLQ\MicroServices\config\atg\rest\registry\ActorChainRestRegistry.properties C:\jboss-eap-6.1\standalone\deployments\ATGProduction\ATGProduction.ear\atglib\_atghome_slocallib\atg\rest\registry
