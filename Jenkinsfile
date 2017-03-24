@@ -16,4 +16,20 @@ node ('master') {
   stage('Verify Stage Preparation') {
     bat "./build-scripts/prepare-env.bat"
   }
+  stage('Unit Test and Code Quality') {
+    timestamps {
+      parallel (
+        "Junit Test" : {
+          sh "echo Unit Test is done"
+        },
+        "Static Code Analysis" : {
+		  bat "${scannerHome}/bin/sonar-scanner \
+                                    -Dsonar.projectKey=${sonarProperties.projectKey} \
+                                    -Dsonar.projectName=${sonarProperties.projectName} \
+                                    -Dsonar.projectVersion=${sonarProperties.projectVersion} \
+                                    -Dsonar.sources=${sonarProperties.sources}"
+        }
+      )
+    }
+  }
 }
