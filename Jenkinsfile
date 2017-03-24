@@ -13,6 +13,9 @@ node ('master') {
   stage('Notify Stakeholders') {
     sh "echo Notifying stackholders is done && sleep 1"
   }
+  stage ('upload data') {
+    sh "./build-scripts/upload-artifacts.sh"
+  }
   stage('Preparation') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
