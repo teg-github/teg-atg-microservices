@@ -16,3 +16,4 @@ node ('master') {
   stage('Verify Stage Preparation') {
     cmd "./build-scripts/prepare-env.bat"
   }
+}
