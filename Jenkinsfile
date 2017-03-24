@@ -17,11 +17,7 @@ node ('master') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
   stage('Verify Stage Preparation') {
-    sh "./build-scripts/prepare-env.sh && cat ~/env.properties && ./build-scripts/copy-code.sh && cat ActorChainRestRegistry.properties"
-  }
-  stage ('Test Build') {
-    sh "nohup ../../tools/jboss/bin/standalone.sh --server-config=ATGProduction.xml &" 
-    
+    sh "./build-scripts/prepare-env.sh && cat ~/env.properties"
   }
   stage('Unit Test and Code Quality') {
     timestamps {
@@ -39,11 +35,9 @@ node ('master') {
       )
     }
   }
-  stage('Intimate Code Quality status to developers') {
-    sh "echo Stage preparation is done && sleep 5"
-  }
+  
   stage('Build Code') {
-    sh "cd ${workspace}/BannerService && echo Build is successful && sleep 5"
+    sh '../../tools/ATG11.2/home/bin/runAssembler -standalone -server ATGProduction ATGProduction.ear -m DAS DPS DSS'
   }
   stage('Docker Containerization') {
     sh "echo Containerization is done && sleep 5"
@@ -52,7 +46,7 @@ node ('master') {
     sh "echo Deployment is done && sleep 5"
   }
   stage('Deploy docker container') {
-    sh "echo Deployment is done && sleep 5"
+    sh "./build-scripts/copy-code.sh && cat ActorChainRestRegistry.properties"
   }
   stage('Update Release Notification') {
   }
