@@ -20,7 +20,7 @@ node ('master') {
     sh "./build-scripts/prepare-env.sh && cat ~/env.properties"
   }
   stage('Test Run') {
-    bat "/var/jenkins_home/tools/ATG11.2/home/servers/ATGProduction/startServerOnJBoss.bat"
+    sh "export JAVA_HOME=/var/jenkins_home/tools/java && export PATH=/var/jenkins_home/tools/java/bin:$PATH && sh /var/jenkins_home/tools/ATG11.2/home/servers/ATGProduction/startServerOnJBoss.sh & > /var/jenkins_home/atg.log"
   }
   stage('Unit Test and Code Quality') {
     timestamps {
