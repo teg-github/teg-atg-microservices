@@ -14,41 +14,5 @@ node ('master') {
     git url: 'https://github.com/teg-github/teg-atg-microservices'
   }
   stage('Verify Stage Preparation') {
-    sh "./build-scripts/prepare-env.sh"
+    cmd "./build-scripts/prepare-env.bat"
   }
-  stage('Test Run') {
-    sh "echo done"
-  }
-  stage('Unit Test and Code Quality') {
-    timestamps {
-      parallel (
-        "Junit Test" : {
-          sh "echo Unit Test is done"
-        },
-        "Static Code Analysis" : {
-		  sh "${scannerHome}/bin/sonar-scanner \
-                                    -Dsonar.projectKey=${sonarProperties.projectKey} \
-                                    -Dsonar.projectName=${sonarProperties.projectName} \
-                                    -Dsonar.projectVersion=${sonarProperties.projectVersion} \
-                                    -Dsonar.sources=${sonarProperties.sources}"
-        }
-      )
-    }
-  }
-  
-  stage('Build Code') {
-    sh 'echo done'
-  }
-  stage('Docker Containerization') {
-    sh "echo Containerization is done"
-  }
-  stage('Upload Artifacts') {
-    sh "echo Deployment is done"
-  }
-  stage('Deploy docker container') {
-    sh "./build-scripts/copy-code.sh"
-    sh "cat ActorChainRestRegistry.properties"
-  }
-  stage('Update Release Notification') {
-  }
-}
